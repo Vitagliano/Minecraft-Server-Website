@@ -1,0 +1,72 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="/admin">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Site</li>
+    <li class="breadcrumb-item active">Equipe</li>
+</ol>
+<div class="row">
+    <div class="col-12">
+        <h1>Postagens</h1>
+        <p>Faça uma nova publicação</p>
+        <hr>
+    </div>
+    <?php if($this->getParams(0) == 'adicionar'): ?>
+    <div class="col-md-8">
+        <div class="card mt-4">
+            <div class="card-header">Nova postagem</div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data" class="row" id="addPost">
+                    <div class="col-md-6 form-group">
+                        <label>Título</label>
+                        <input class="form-control" name="title" autocomplete="false">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Autor</label>
+                        <input class="form-control" name="author">
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <label>Notícia</label>
+                        <textarea class="summernote" name="body"></textarea>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label>Imagem do cabeçalho</label>
+                        <div class="input-group mb-3">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="inputGroupFile02" name="image">
+                                <label class="custom-file-label" for="inputGroupFile02">Escolha a imagem</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <button class="btn btn-primary">Publicar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <?php else: ?>
+        <div class="col-md-12">
+            <div class="card mt-4">
+                <div class="card-header">Gerenciador de notícias</div>
+                <div class="card-body">
+                    <table class="table table-striped datatable">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Título</th>
+                            <th scope="col">Postado por</th>
+                            <th scope="col">Resumo</th>
+                            <th scope="col">Data de postagem</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <?= $this->posts->table() ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    <?php endif ?>
+</div>

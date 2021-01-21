@@ -1,0 +1,44 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="/admin">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Loja</li>
+    <li class="breadcrumb-item active">Bloquear conta</li>
+</ol>
+<div class="row">
+    <div class="col-12">
+        <h1>Bloquear conta</h1>
+        <p>Bloqueie usuários de comprar na loja</p>
+        <hr>
+    </div>
+    <div class="col-6 mr-auto ml-auto">
+        <div class="card mt-4">
+            <div class="card-body">
+                <h3>Gerenciador</h3>
+                <br>
+                <form class="form-inline" method="post" id="addBlock">
+                    <div class="form-group mb-2">
+                        <label for="username">Adicionar bloqueio em </label>
+                        <input class="form-control ml-3" id="username" name="username" placeholder="Exemplo: Notch">
+                    </div>
+                    <button type="submit" class="btn btn-primary ml-3 mb-2">Confirmar bloqueio</button>
+                </form>
+                <br><br>
+                <table class="table table-hover datatable" style="background: rgba(0,0,0,.02);">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Avatar</th>
+                        <th scope="col">Usuário</th>
+                        <th scope="col">Ação</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?= $this->block->show() ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<br>

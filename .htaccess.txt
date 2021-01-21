@@ -1,0 +1,6 @@
+#Habilitar registro de erros do PHP
+# php_flag indica que a geração de erros estará ativada
+php_flag log_errors on
+# php_value error_log erros_PHP.log indica que os logs serão registrados no arquivo erros_PHP.log, na mesma pasta da aplicação web/site
+# você pode especificar um diretório específico, como /home/nomedousuario/public_html/erros_PHP.log
+php_value error_log erros_PHP.log

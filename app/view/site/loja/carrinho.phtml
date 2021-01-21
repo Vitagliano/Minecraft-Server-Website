@@ -1,0 +1,166 @@
+<?php
+unset($_SESSION['WebStoreDiscount']);
+unset($_SESSION['WebCupom']);
+
+$packages = $this->cart->listPackages();
+$total    = $this->cart->totalAmount();
+?>
+<?php if (count($packages) > 0): ?>
+    <section>
+        <div class="container">
+            <div id="content">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card mb-3">
+                            <div class="card-block p-3">
+                                <table id="cart" class="table table-hover table-condensed">
+                                    <thead style="border-color: transparent !important;">
+                                    <tr>
+                                        <th style="width:60%">Pacote</th>
+                                        <th style="width:10%">Valor</th>
+                                        <th style="width:4%">Quantidade</th>
+                                        <th style="width:18%" class="text-center">Subtotal</th>
+                                        <th style="width:18%">Ações</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php foreach($packages as $indice => $package): ?>
+                                        <tr>
+                                            <td data-th="Pacote">
+                                                <div class="row">
+                                                    <div class="col-sm-4 hidden-xs"><img src="<?= $package['image'] ?>" class="img-fluid"/></div>
+                                                    <div class="col-sm-8">
+                                                        <h4 class="nomargin"><?= $package['title']; ?></h4>
+                                                        <p class="m-0">Servidor: <?= $package['server_name'] ?></p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td data-th="Valor">R$<?= number_format($package['price'], 2, ',', '.'); ?></td>
+                                            <td data-th="Quantidade">
+                                                <input type="number" class="form-control text-center quantia-<?= $package['id'] ?>" value="<?= $package['qnt'] ?>">
+                                            </td>
+                                            <td data-th="Subtotal" class="text-center">R$<?= number_format($package['price'] * $package['qnt'], 2, ',', '.'); ?></td>
+                                            <td class="actions" data-th="Ações">
+                                                <button class="btn btn-info btn-sm att-cart" style="margin-bottom: 4px;" id="<?= $indice ?>-<?= $package['id'] ?>"><i class="fas fa-sync-alt"></i></button>
+                                                <button class="btn btn-danger btn-sm remove-from-cart" style="padding: 5px 12px;" id="<?= $indice ?>"><i class="fas fa-times"></i></button>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                                <div class="row">
+                                   
+                                    <div class="col-md-12">
+                                        <h5>Formas de pagamento:</h5>
+                                        <input type="hidden" id="ip" value="<?= $this->checkout->ip(); ?>">
+                                        <div class="row gateways">
+                                            <?php if($this->settings->gatewaysDisabled('pagseguro')): ?>
+                                            <div class="col-md-4">
+                                                <label>
+                       <input type="radio" name="gateway" class="gateway" id="gateway" value="pagseguro"> <img src="https://i.imgur.com/3dozPs9.png" class="img-fluid">
+                                                </label>
+                                            </div>
+                                            <?php endif ?>
+                                            <?php if($this->settings->gatewaysDisabled('mercadopago')): ?>
+                                            <div class="col-md-4">
+                                                <label>
+                                                    <input type="radio" name="gateway" class="gateway" id="gateway" value="mercadopago"> <img src="https://i.imgur.com/04bzV3e.png" class="img-fluid">
+                                                </label>
+                                            </div>
+                                            <?php endif ?>
+                                            <?php if($this->settings->gatewaysDisabled('paypal')): ?>
+                                                <?php if($this->checkout->blockPayPal()): ?>
+                                                <div class="col-md-4">
+                                                    <label>
+                                                        <input type="radio" name="gateway" class="gateway" id="gateway" value="paypal"> <img src="https://i.imgur.com/w1cFbRq.png" class="img-fluid">
+                                                    </label>
+                                                </div>
+                                                <?php endif ?>
+                                            <?php endif ?>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row mt-4">
+                                    <div class="col-md-4 mr-auto">
+                                        <a href="/loja" class="btn btn-warning text-white">Continuar comprando</a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <small><small><small>Seu IP <input class="form-control-plaintext text-center" style="width: auto; padding: 0;" readonly value="<?= $this->checkout->ip(); ?>"> está sendo gravado por segurança</small></small></small>
+                                    </div>
+
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card p-4">
+
+                                        <span class="m-0 mb-4">Total <strong style="float: right;" id="cupomResult">R$<?= number_format($total, 2, ',', '.'); ?></strong></span>
+                                    
+                                        <div class="pb-2 pt-2">
+                                    <label>
+                                        <input type="checkbox" name="termos" id="termos" checked> Eu li e concordo com os <a href="javascript:void(0)" data-toggle="modal" data-target="#termos-modal">termos e condições</a> de compra.
+                                    </label>
+                                </div>
+                                <div class="col-md-12">
+                                        <?php if($this->auth->isLogged()): ?>
+                                            <?php if(!$this->block->has($this->auth->username())): ?>
+                                            <button class="btn btn-success btn-block" id="checkout">Comprar</button>
+                                            <?php else: ?>
+                                                <button class="btn btn-success btn-block" disabled tabindex="-1">Comprar <i class="ion-arrow-right-c ml-1"></i></button>
+                                                <small class="text-muted">Você está bloqueado!</small>
+                                            <?php endif; ?>
+                                        <?php else: ?>
+                                            <button class="btn btn-success btn-block" disabled tabindex="-1">Comprar <i class="ion-arrow-right-c ml-1"></i></button>
+                                            <small class="text-muted">Faça login para continuar</small>
+                                        <?php endif; ?>
+                                    </div>
+                                <div class="mb-4 mt-4" id="headingOne">
+                                        <small>Você possui um cupom de desconto?</small>
+                                                        <label class="mt-2">Insira o cupom</label>
+                                                        <input class="form-control" name="cupom" id="cupom">
+                                                        <a href="javascript:void(0)" id="cupomApply"><button class="btn btn-small btn-info p-2 mt-1">Aplicar cupom</button></a>
+                                            </div>
+
+                                 
+                        </div>
+
+                        
+                    </div>
+
+
+                </div>
+                <div class="col-md-12"></div>
+            </div>
+        </div>
+        <br>
+    </section>
+    <div class="modal fade" id="termos-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Termos e condições de compra</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <?= $this->settings->printTerms(); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php else: ?>
+    <div class="container">
+        <div id="content">
+            <div class="card p-5">
+            <h3 class="text-center">Seu carrinho está vazio</h3>
+            <center><button onclick="goTo('/loja');" class="btn btn-danger m-auto">Ir para a loja</button></center>
+            </div>
+        </div>
+    </div>
+<?php endif ?>

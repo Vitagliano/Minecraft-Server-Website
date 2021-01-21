@@ -1,0 +1,195 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="/admin">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Site</li>
+    <li class="breadcrumb-item active">Manutenção</li>
+</ol>
+<div class="row">
+    <div class="col-12">
+        <h1>E-mails</h1>
+        <p>Edite os e-mails que são enviados</p>
+        <hr>
+    </div>
+    <div class="col-md-4">
+        <div class="card mt-4">
+            <div class="card-header">Selecione</div>
+            <div class="card-body">
+                <p class="text-muted">Compras:</p>
+                <ul class="nav-single-lat">
+                    <li><a href="javascript:void(0)" class="opentab" id="pag-pen">Pagamento pendente</a></li>
+                    <li><a href="javascript:void(0)" class="opentab" id="pag-con">Confirmação de pagamento</a></li>
+                    <li><a href="javascript:void(0)" class="opentab" id="pag-ati">Ativação dos produtos</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card mt-4">
+            <div class="card-header">Editor do e-mail</div>
+            <div class="card-body">
+                <h3 class="text-muted" id="openmessage">Selecione ao lado para editar</h3>
+                <div class="closedtab" id="pag-pen-tab">
+                    <h5>E-mail: pagamento pendente</h5>
+                    <br>
+                    <p>Prefixos permitidos:</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="text-muted m-0"><small>{name} é usado para o nome do comprador</small></p>
+                            <p class="text-muted m-0"><small>{ip} é usado para o IP do comprador</small></p>
+                            <p class="text-muted m-0"><small>{username} é usado para o nome do jogador</small></p>
+                            <p class="text-muted m-0"><small>{cupom} é usado para mostrar o cupom</small></p>
+                            <p class="text-muted m-0"><small>{reference} é usado o número da fatura</small></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="text-muted m-0"><small>{price} usado para o valor total</small></p>
+                            <p class="text-muted m-0"><small>{date} é usado para a data do início da compra</small></p>
+                            <p class="text-muted m-0"><small>{time} é usado para o horário do início da compra</small></p>
+                            <p class="text-muted m-0"><small>{gateway} é usado para o nome da forma de pagamento</small></p>
+                            <p class="text-muted m-0"><small>{transaction} é usado para id da transação</small></p>
+                        </div>
+                    </div>
+                    <br>
+                    <form method="post" class="setEmails">
+                        <input type="hidden" name="type" value="pending">
+                        <div class="form-group">
+                            <textarea class="summernote" name="html" id="html"><?= $this->emails->body('pending') ?></textarea>
+                        </div>
+                        <button class="btn btn-sm btn-primary">salvar alterações</button>
+                    </form>
+                </div>
+                <div class="closedtab" id="pag-con-tab">
+                    <h5>E-mail: confirmação de pagamento</h5>
+                    <br>
+                    <p>Prefixos permitidos:</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="text-muted m-0"><small>{name} é usado para o nome do comprador</small></p>
+                            <p class="text-muted m-0"><small>{ip} é usado para o IP do comprador</small></p>
+                            <p class="text-muted m-0"><small>{username} é usado para o nome do jogador</small></p>
+                            <p class="text-muted m-0"><small>{dateApproved} é usado para a data de quando o pagamento foi aprovado</small></p>
+                            <p class="text-muted m-0"><small>{reference} é usado o número da fatura</small></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="text-muted m-0"><small>{price} usado para o valor total</small></p>
+                            <p class="text-muted m-0"><small>{date} é usado para a data do início da compra</small></p>
+                            <p class="text-muted m-0"><small>{time} é usado para o horário do início da compra</small></p>
+                            <p class="text-muted m-0"><small>{gateway} é usado para o nome da forma de pagamento</small></p>
+                            <p class="text-muted m-0"><small>{transaction} é usado para id da transação</small></p>
+                        </div>
+                    </div>
+                    <br>
+                    <form method="post" class="setEmails">
+                        <input type="hidden" name="type" value="confirmation">
+                        <div class="form-group">
+                            <textarea class="summernote" name="html" id="html"><?= $this->emails->body('confirmation') ?></textarea>
+                        </div>
+                        <button class="btn btn-sm btn-primary">salvar alterações</button>
+                    </form>
+                </div>
+                <div class="closedtab" id="pag-ati-tab">
+                    <h5>E-mail: pagamento pendente</h5>
+                    <br>
+                    <p>Prefixos permitidos:</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="text-muted m-0"><small>{name} é usado para o nome do comprador</small></p>
+                            <p class="text-muted m-0"><small>{username} é usado para o nome do jogador</small></p>
+                            <p class="text-muted m-0"><small>{gateway} é usado para o nome da forma de pagamento</small></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="text-muted m-0"><small>{date} é usado para a data do início da compra</small></p>
+                            <p class="text-muted m-0"><small>{time} é usado para o horário do início da compra</small></p>
+                        </div>
+                    </div>
+                    <br>
+                    <form method="post" class="setEmails">
+                        <input type="hidden" name="type" value="activated">
+                        <div class="form-group">
+                            <textarea class="summernote" name="html" id="html"><?= $this->emails->body('activated') ?></textarea>
+                        </div>
+                        <button class="btn btn-sm btn-primary">salvar alterações</button>
+                    </form>
+                </div>
+                <div class="closedtab" id="tic-abe-tab">
+                    <h5>E-mail: ticket aberto</h5>
+                    <br>
+                    <p>Prefixos permitidos:</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="text-muted m-0"><small>{username} é usado para o nome do jogador</small></p>
+                            <p class="text-muted m-0"><small>{ip} é usado para o IP do comprador</small></p>
+                            <p class="text-muted m-0"><small>{matter} é usado para o assunto do ticket</small></p>
+                            <p class="text-muted m-0"><small>{date} é usado para a data de quando aberto</small></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="text-muted m-0"><small>{url} é usado para a url do ticket</small></p>
+                            <p class="text-muted m-0"><small>{id} é usado o número do ticket</small></p>
+                            <p class="text-muted m-0"><small>{status} é usado o status do ticket</small></p>
+                        </div>
+                    </div>
+                    <br>
+                    <form method="post" class="setEmails">
+                        <input type="hidden" name="type" value="opened">
+                        <div class="form-group">
+                            <textarea class="summernote" name="html" id="html"><?= $this->emails->body('opened') ?></textarea>
+                        </div>
+                        <button class="btn btn-sm btn-primary">salvar alterações</button>
+                    </form>
+                </div>
+                <div class="closedtab" id="tic-res-tab">
+                    <h5>E-mail: ticket respondido</h5>
+                    <br>
+                    <p>Prefixos permitidos:</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="text-muted m-0"><small>{username} é usado para o nome do jogador</small></p>
+                            <p class="text-muted m-0"><small>{ip} é usado para o IP do comprador</small></p>
+                            <p class="text-muted m-0"><small>{matter} é usado para o assunto do ticket</small></p>
+                            <p class="text-muted m-0"><small>{date} é usado para a data de quando aberto</small></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="text-muted m-0"><small>{url} é usado para a url do ticket</small></p>
+                            <p class="text-muted m-0"><small>{id} é usado o número do ticket</small></p>
+                            <p class="text-muted m-0"><small>{status} é usado o status do ticket</small></p>
+                        </div>
+                    </div>
+                    <br>
+                    <form method="post" class="setEmails">
+                        <input type="hidden" name="type" value="replied">
+                        <div class="form-group">
+                            <textarea class="summernote" name="html" id="html"><?= $this->emails->body('replied') ?></textarea>
+                        </div>
+                        <button class="btn btn-sm btn-primary">salvar alterações</button>
+                    </form>
+                </div>
+                <div class="closedtab" id="tic-fec-tab">
+                    <h5>E-mail: ticket fechado</h5>
+                    <br>
+                    <p>Prefixos permitidos:</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="text-muted m-0"><small>{username} é usado para o nome do jogador</small></p>
+                            <p class="text-muted m-0"><small>{ip} é usado para o IP do comprador</small></p>
+                            <p class="text-muted m-0"><small>{matter} é usado para o assunto do ticket</small></p>
+                            <p class="text-muted m-0"><small>{date} é usado para a data de quando aberto</small></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="text-muted m-0"><small>{url} é usado para a url do ticket</small></p>
+                            <p class="text-muted m-0"><small>{id} é usado o número do ticket</small></p>
+                            <p class="text-muted m-0"><small>{status} é usado o status do ticket</small></p>
+                        </div>
+                    </div>
+                    <br>
+                    <form method="post" class="setEmails">
+                        <input type="hidden" name="type" value="closed">
+                        <div class="form-group">
+                            <textarea class="summernote" name="html" id="html"><?= $this->emails->body('closed') ?></textarea>
+                        </div>
+                        <button class="btn btn-sm btn-primary">salvar alterações</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

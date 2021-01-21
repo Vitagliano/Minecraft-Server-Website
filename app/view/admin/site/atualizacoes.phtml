@@ -1,0 +1,51 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="/admin">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Site</li>
+    <li class="breadcrumb-item active">Changelogs</li>
+</ol>
+<div class="row">
+    <div class="col-12">
+        <h1>Changelogs</h1>
+        <p>Mantenha as informações atualiadas</p>
+        <hr>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">Adicionar changelog</div>
+            <div class="card-body">
+                <form method="post" id="addChangelog">
+                    <div class="form-group">
+                        <label>Título</label>
+                        <input class="form-control" name="title">
+                    </div>
+                    <div class="form-group">
+                        <label>Mensagem</label>
+                        <input class="form-control" name="topic">
+                    </div>
+                    <br>
+                    <button class="btn btn-block btn-primary" style="margin-top: 10px;">Salvar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">Gerenciador</div>
+            <div class="card-body">
+                <table class="table table-striped table-bordered dt-responsive nowrap datatable" style="width:100%">
+                    <thead>
+                    <tr>
+                        <th>Data das atualizações</th>
+                        <th>Abrir menu</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?= $this->changelogs->listall() ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

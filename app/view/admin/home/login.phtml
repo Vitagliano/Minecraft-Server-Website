@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="card card-login mx-auto" style="margin-top: 20vh;">
+        <div class="card-header"><h3 class="text-center m-0">PAINEL DE CONTROLE</h3></div>
+        <div class="card-body">
+            <div class="alert alert-success" style="display: none;"></div>
+            <div class="alert alert-danger" style="display: none;"></div>
+            <form method="post" id="authenticate">
+                <input name="<?= $this->tokenID ?>" value="<?= $this->tokenVALUE ?>" type="hidden">
+                <input name="<?= $this->inputs['ip'] ?>" value="<?= \app\lib\RemoteAddress::get() ?>" type="hidden">
+                <div class="form-group">
+                    <label for="username">Usuário</label>
+                    <input class="form-control" id="username" name="<?= $this->inputs['username'] ?>" placeholder="Usuário">
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input class="form-control" id="password" type="password" name="<?= $this->inputs['password'] ?>" placeholder="Senha">
+                </div>
+                <div class="form-group">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" name="<?= $this->inputs['mode'] ?>" type="checkbox"> Manter conectado?
+                        </label>
+                    </div>
+                </div>
+                <div class="progress" style="display: none; height: 3px;">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+                </div>
+                <br>
+                <button class="btn btn-primary btn-block"><i class="fa fa-lock"></i> Autenticar</button>
+            </form>
+        </div>
+    </div>
+</div>

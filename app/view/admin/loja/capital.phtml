@@ -1,0 +1,161 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="/admin">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Loja</li>
+    <li class="breadcrumb-item active">Capital de Giro</li>
+</ol>
+<div class="row">
+    <div class="col-12">
+        <h1>Capital de Giro</h1>
+        <p>Organize e administre seu lucro</p>
+        <hr>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-dark o-hidden h-100">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i class="fa fa-fw fa-percent"></i>
+                </div>
+                <div class="mr-5 p-3"><h4 class="m-0">R$<?= number_format($this->transactions->getEarnsInMonth(2) - $this->transactions->getEarnsInMonth(1), 2, ',', '.') ?>  taxado</h4></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-warning o-hidden h-100">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i class="fa fa-fw fa-caret-down"></i>
+                </div>
+                <div class="mr-5 p-3"><h4 class="m-0">R$<?= number_format($this->capital->expenseAmount(), 2, ',', '.') ?> à pagar</h4></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-primary o-hidden h-100">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i class="fa fa-fw fa-caret-up"></i>
+                </div>
+                <div class="mr-5 p-3"><h4 class="m-0">R$<?= number_format($this->transactions->getEarnsInMonth(2), 2, ',', '.') ?> renda bruta</h4></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-success o-hidden h-100">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i class="fa fa-fw fa-caret-up"></i>
+                </div>
+                <div class="mr-5 p-3"><h4 class="m-0">R$<?= number_format(($this->transactions->getEarnsInMonth(1) - $this->capital->expensePaidAmount()), 2, ',', '.') ?> renda líquida</h4></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card mt-4">
+            <div class="card-header">Registrar despesas</div>
+            <div class="card-body">
+                <form method="post" id="addExpenses">
+                    <div class="form-group">
+                        <label>Identificador</label>
+                        <input name="name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Valor</label>
+                        <input name="amount" class="form-control" type="number" step="any">
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo</label>
+                        <select name="type" class="form-control" id="type">
+                            <option disabled selected>Selecione</option>
+                            <option value="1">Fixa</option>
+                            <option value="2">À vista</option>
+                        </select>
+                    </div>
+                    <div class="form-group hide" id="term">
+                        <label>Dia</label>
+                        <input name="term" class="form-control" type="number" max="31" placeholder="Dia do vencimento no mês">
+                    </div>
+                    <button class="btn btn-block btn-primary">Registrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <div class="card mt-4">
+            <div class="card-header">Suas despesas</div>
+            <div class="card-body">
+                <table class="table table-hover datatable" style="background: rgba(0,0,0,.02);">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Identificador</th>
+                        <th scope="col">Valor</th>
+                        <th scope="col">Pagar até</th>
+                        <th scope="col">Pago em</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Marcar</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?= $this->capital->showExpenses() ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer">
+                <h5 class="m-0">Total a pagar: <span class="float-right">R$<?= number_format($this->capital->expenseAmount(), 2, ',', '.') ?></span></h5>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card mt-4">
+            <div class="card-header">Registrar rateamento</div>
+            <div class="card-body">
+                <form method="post" id="addRate">
+                    <div class="form-group">
+                        <label>Nome</label>
+                        <input name="name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Porcentagem</label>
+                        <input name="percent" class="form-control" type="number" step="any">
+                    </div>
+                    <button class="btn btn-block btn-primary">Registrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <div class="card mt-4">
+            <div class="card-header">Rateamentos</div>
+            <div class="card-body">
+                <table class="table table-hover datatable" style="background: rgba(0,0,0,.02);">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Porcentagem</th>
+                        <th scope="col">Valor à receber</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <?= $this->capital->showRate() ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<script type="text/javascript">
+    document.getElementById('type').onchange = function (e) {
+        var type = document.getElementById('type');
+
+        if(type.options[type.selectedIndex].value == 1)
+        {
+            document.getElementById('term').style.display = 'block';
+        }else{
+            document.getElementById('term').style.display = 'none';
+        }
+    }
+</script>

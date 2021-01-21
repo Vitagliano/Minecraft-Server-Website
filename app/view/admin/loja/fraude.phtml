@@ -1,0 +1,35 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="/admin">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Loja</li>
+    <li class="breadcrumb-item active">Anti-fraude</li>
+</ol>
+<div class="row">
+    <div class="col-12">
+        <h1>Anti-fraude</h1>
+        <p>Auto bloquear usuários com suspeita de fraude</p>
+        <hr>
+    </div>
+    <div class="col-6 mr-auto ml-auto">
+        <div class="card mt-4">
+            <div class="card-body">
+                <h3>Gerenciador</h3>
+                <br>
+                <table class="table table-hover datatable" style="background: rgba(0,0,0,.02);">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Usuário</th>
+                        <th scope="col">Tentativas</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <?= $this->fraud->show() ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<br>

@@ -1,0 +1,42 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="/admin">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Loja</li>
+    <li class="breadcrumb-item active">Trasações</li>
+</ol>
+<div class="row">
+    <div class="col-12">
+        <h1>Trasações</h1>
+        <p>Log de transaçãoes</p>
+        <hr>
+    </div>
+    <div class="col-md-12">
+        <div class="card mt-4">
+            <div class="card-body">
+                <h3>Log de transações</h3>
+                <br>
+                <table class="table table-hover datatable" style="background: rgba(0,0,0,.02);">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Código de Transação</th>
+                        <th scope="col">Usuário</th>
+                        <th scope="col">Referência</th>
+                        <th scope="col">Valor pago</th>
+                        <th scope="col">Valor a receber</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Carrinho</th>
+                        <th scope="col">Alterar</th>
+                        <th scope="col">Relatório</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <?= $this->transactions->log() ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<br>

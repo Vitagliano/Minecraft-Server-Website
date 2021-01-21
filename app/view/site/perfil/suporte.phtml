@@ -1,0 +1,84 @@
+<div class="container">
+    <div id="content">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card mb-0">
+                    <div class="card-body">
+                        <h2 class="text-center m-0"><img src="https://minotar.net/helm/<?= $this->profile->username() ?>/80.png" style="border-radius: 10px"> <?= $this->profile->username() ?></h2>
+                    </div>
+                </div>
+                <br>
+                <div class="card">
+                    <div class="card-body">
+                        <ul class="user-nav">
+                                <li><a href="/perfil"><i class="fas fa-user"></i> Resumo</a></li>
+                                <li><a href="/perfil/compras"><i class="fas fa-shopping-cart"></i> Minhas compras</a></li>
+                                <li class="active"><a href="/perfil/suporte"><i class="fas fa-headset"></i> Suporte</a></li>
+                                <li><a href="/perfil/login/logout"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="card p-5">
+                    <h1 class="m-0"><i class="fas fa-headset"></i> Suporte <button class="btn btn-sm btn-danger float-right" style="padding: 5px 10px; font-size: 14px;" data-toggle="modal" data-target="#modal-ticket-open">abrir um ticket</button></h1>
+                    <div class="modal fade" id="modal-ticket-open" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Abrir ticket</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="text-muted text-center"><small>Você só pode abrir um ticket por vez, ou seja, só será possível abrir um novo quando os outros estiverem fechados.</small></p>
+                                    <div class="alert alert-danger" style="display: none"></div>
+                                    <form method="post" id="openTicket">
+                                        <input type="hidden" name="<?= $this->tokenID ?>" value="<?= $this->tokenVALUE ?>">
+                                        <div class="form-group">
+                                            <label>Assunto</label>
+                                            <input class="form-control" name="<?= $this->inputs['subject'] ?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>ID do Pedido</label>
+                                            <select class="form-control" name="<?= $this->inputs['order'] ?>">
+                                                <option selected disabled>Selecione</option>
+                                                <?= $this->transactions->liOrderToUsername($this->profile->username()) ?>
+
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Mensagem</label>
+                                            <textarea name="<?= $this->inputs['body'] ?>" class="form-control" rows="6" style="resize: none"></textarea>
+                                        </div>
+                                        <br>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                            <button class="btn btn-primary">Abrir ticket</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Assunto</th>
+                            <th scope="col">ID do pagamento</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Ação</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <?= $this->tickets->showToUsername($this->profile->username()) ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

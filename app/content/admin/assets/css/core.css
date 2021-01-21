@@ -1,0 +1,154 @@
+.content-wrapper {
+    background: #fff;
+}
+#mainNav.navbar-dark .navbar-collapse .navbar-sidenav {
+    background: #263238;
+}
+#mainNav.fixed-top.navbar-dark .sidenav-toggler {
+    background-color: #1976d2;
+    color: white;
+}
+#mainNav .navbar-brand {
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #fff;
+    width: 250px;
+}
+#mainNav .navbar-brand b {
+    color: #1976d2;
+}
+.bg-dark {
+    background-color: #102027!important;
+}
+
+.gateways {
+    margin-bottom: 30px;
+}
+.gateways label {
+    position: relative;
+}
+.gateways label > input {
+    visibility: hidden;
+    position: absolute;
+}
+.gateways label img {
+    max-width: 150px;
+}
+.gateways label > input + img {
+    float: left;
+    opacity: .5;
+    background: #FFF;
+    cursor: pointer;
+    width: 150px;
+    transition: all 200ms ease;
+}
+.gateways input:checked + img {
+    opacity: 1;
+}
+.gateways label:hover > input + img {
+    opacity: .9;
+    transform: scale(1.05);
+}
+.gateways small {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #BBB;
+    padding:5px 0;
+    text-align: center;
+}
+
+.note-popover.popover {
+    display: none;
+    max-width: none;
+}
+
+.nav-single-lat {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+.nav-single-lat li {
+    padding: 5px;
+}
+
+.closedtab {
+    display: none;
+}
+
+.changelog-list {
+    margin: 10px;
+    list-style-type: none;
+    background: #f5f5f5;
+    padding: 10px 15px;
+}
+.changelog-list .title {
+    font-weight: 600;
+    font-size: 20px;
+    padding-bottom: 5px;
+    border-bottom: solid 1px rgba(0,0,0,.05);
+    margin-bottom: 10px;
+}
+.changelog-list .input-box {
+    position: relative;
+    width: 100%;
+}
+.changelog-list .input-box input {
+    width: 75%;
+    padding: 5px 10px;
+    border: 2px solid #bdbdbd;
+    background: #eeeeee;
+    color: #bdbdbd;
+    margin-bottom: 5px;
+    transition: all ease .2s;
+}
+.changelog-list .input-box input:focus {
+    border-color: #2196f3;
+    outline: none;
+    background: #fff;
+    color: #2e2e2e;
+}
+.changelog-list .button-box {
+    float: right;
+}
+.changelog-list .button-box button {
+    border: none;
+    padding: 5px 10px;
+    margin-top: 2px;
+    margin-left: 5px;
+    color: white;
+    cursor: pointer;
+    transition: all ease .2s;
+}
+.changelog-list .button-box .edit {
+    background: #8bc34a;
+    padding: 5px 7px;
+}
+.changelog-list .button-box .edit:hover { background: #5a9216; }
+.changelog-list .button-box .delete {
+    background: #f44336;
+}
+.changelog-list .button-box .delete:hover { background: #ba000d; }
+
+.hide {
+    display: none;
+}
+
+.agent1 {
+    background: #a5d6a7;
+    color: #000;
+    font-size: 14px;
+    border-radius: 5px;
+    border: none;
+}
+.agent2 {
+    background: #bdbdbd;
+    color: #000;
+    font-size: 14px;
+    border-radius: 5px;
+    border: none;
+}
+.date-ticket {
+    float: right;
+    font-size: 10px;
+}

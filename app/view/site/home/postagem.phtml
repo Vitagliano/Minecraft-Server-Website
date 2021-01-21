@@ -1,0 +1,39 @@
+<section class="container">
+    <div id="content">
+        <div class="row">
+        
+            <div class="col-md-8">
+                <div class="feed">
+            <?= $this->posts->single($this->getParams(0)) ?>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="discord-widget">
+                      <div class="discord-header">
+                        <div class="discord-jrn-logo"></div>
+                        <div id="members-count"></div>
+                      </div>
+                      <div class="discord-body">
+                        <div class="scroll-placeholder"></div>
+                        <div class="discord-list">
+                          <div class="discord-list-status">
+                            <div class="discord-list-label"></div>
+                          </div>
+                          <table id="members-list"></table>
+                        </div>
+                        <!--</div>-->
+                        <a onclick="javascript:window.open('https://discord.gg/tgaDV9s'); return false;"><button class="discord-cta"></button></a>
+                      </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <a class="twitter-timeline" data-height="400" href="https://twitter.com/RedeUniverseNet" data-show-replies="false" data-chrome="transparent, noheader, nofooter, noborders, noscrollbar" data-link-color="#7a6fbf"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

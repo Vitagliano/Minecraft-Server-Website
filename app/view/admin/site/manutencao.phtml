@@ -1,0 +1,52 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="/admin">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Site</li>
+    <li class="breadcrumb-item active">Manutenção</li>
+</ol>
+<div class="row">
+    <div class="col-12">
+        <h1>Manutenção</h1>
+        <p>Deixe o site em manutenção</p>
+        <hr>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">Ativar/desativar modo manutenção</div>
+            <div class="card-body">
+                <p class="text-muted">Ao ativar o modo de manutenção, o site ficará inacessível pelas pessoas não registradas na whitelist.</p>
+                <h5>
+                    <small>O modo está:
+                        <?php if($this->maintenance->mode()): ?>
+                        <b style="color: green">ativado</b>
+                        <?php else: ?>
+                        <b style="color: red">desativado</b>
+                        <?php endif; ?>
+                    </small>
+                </h5>
+                <hr>
+                <form method="post" id="setMaintenance">
+                    <div class="form-group">
+                        <label for="ips">IP's permitidos</label>
+                        <textarea class="form-control" rows="5" id="ips" name="ips" style="resize: none;"><?= $this->maintenance->htmlIPS() ?></textarea>
+                    </div>
+                    <button class="btn btn-sm btn-primary btn-block">mudar modo</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">Página de manutenção</div>
+            <div class="card-body">
+                <form class="messageMaintenance" method="post">
+                    <div class="form-group">
+                        <textarea class="summernote" name="html" id="html"><?= $this->maintenance->htmlMESSAGE() ?></textarea>
+                    </div>
+                    <button class="btn btn-sm btn-primary">salvar nova estilização</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

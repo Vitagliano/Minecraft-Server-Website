@@ -1,0 +1,27 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="/admin">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Site</li>
+    <li class="breadcrumb-item active">Termos e Condições</li>
+</ol>
+<div class="row">
+    <div class="col-12">
+        <h1>Termos e Condições</h1>
+        <p>Altere os termos de sua loja.</p>
+        <hr>
+    </div>
+    <div class="col-md-12">
+        <div class="card mt-4">
+            <div class="card-header">Editar os Termos e Condições</div>
+            <div class="card-body">
+                <form method="post" id="setTerms">
+                    <div class="form-group">
+                        <textarea class="summernote" name="html" id="html"><?= $this->settings->printTerms(); ?></textarea>
+                    </div>
+                    <button class="btn btn-sm btn-primary">salvar alterações</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

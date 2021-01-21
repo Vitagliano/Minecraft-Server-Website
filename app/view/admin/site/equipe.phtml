@@ -1,0 +1,98 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="/admin">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Site</li>
+    <li class="breadcrumb-item active">Equipe</li>
+</ol>
+<div class="row">
+    <div class="col-12">
+        <h1>Equipe</h1>
+        <p>Gerenciamento da página de equipe</p>
+        <hr>
+    </div>
+    <?php if($this->getParams(0) == 'adicionar'): ?>
+    <div class="col-md-6">
+        <div class="card mt-4">
+            <div class="card-header">Adicionar cargos</div>
+            <div class="card-body">
+                <form method="post" id="addOffice">
+                    <div class="form-group">
+                        <label>Nome do cargo:</label>
+                        <input class="form-control" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label>Cor:</label>
+                        <input class="form-control" name="color" placeholder="Exemplos: #000 ou rgba(0,0,0,1) ou rgb(0,0,0)">
+                    </div>
+                    <button class="btn btn-sm btn-primary">adicionar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card mt-4">
+            <div class="card-header">Adicionar membros</div>
+            <div class="card-body">
+                <form method="post" id="addMember">
+                    <div class="form-group">
+                        <label>Nome do usuário:</label>
+                        <input class="form-control" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label>Twitter do membro:</label>
+                        <input class="form-control" name="twitter">
+                    </div>
+                    <div class="form-group">
+                        <label>Cargo</label>
+                        <select class="form-control" name="office">
+                            <option selected disabled>Selecione</option>
+                            <?= $this->staff->select() ?>
+                        </select>
+                    </div>
+                    <button class="btn btn-sm btn-primary">adicionar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <?php else: ?>
+    <div class="col-md-6">
+        <div class="card mt-4">
+            <div class="card-header">Gerenciar cargos</div>
+            <div class="card-body">
+                <table class="table table-striped table-bordered dt-responsive nowrap datatable" style="width:100%">
+                    <thead>
+                    <tr>
+                        <th>Cargo</th>
+                        <th>Cor</th>
+                        <th>Ações</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?= $this->staff->listOffices() ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card mt-4">
+            <div class="card-header">Gerenciar membros</div>
+            <div class="card-body">
+                <table class="table table-striped table-bordered dt-responsive nowrap datatable" style="width:100%">
+                    <thead>
+                    <tr>
+                        <th>Membro</th>
+                        <th>Cargo</th>
+                        <th>Ações</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?= $this->staff->listMembers() ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <?php endif ?>
+</div>

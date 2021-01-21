@@ -1,0 +1,116 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="/admin">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Loja</li>
+    <li class="breadcrumb-item active">Pacotes</li>
+</ol>
+<div class="row">
+    <div class="col-12">
+        <h1>Pacotes</h1>
+        <p>Adicione novos pacotes</p>
+        <hr>
+    </div>
+    <?php if($this->getParams(0) == 'adicionar'): ?>
+        <div class="col-md-8 ml-auto mr-auto">
+            <div class="card mt-4">
+                <div class="card-header">Novo pacote</div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data" class="row" id="addPackage">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label>Nome *</label>
+                                <input class="form-control" name="name" autocomplete="false">
+                            </div>
+                            <div class="form-group">
+                                <label>Descrição *</label>
+                                <textarea class="summernote" name="description"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-4 form-group">
+                            <label>Imagem *</label>
+                            <div class="input-group mb-3">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input imagePicker" name="image">
+                                    <label class="custom-file-label" for="inputGroupFile02">Escolha a imagem</label>
+                                </div>
+                            </div>
+                            <hr>
+                            <p class="text-muted">Preview:</p>
+                            <div id="renderImage"><img src="/app/content/admin/assets/images/package.png" class="img-thumbnail img-fluid changeImage"></div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Valor *</label>
+                                        <input class="form-control" name="amount" type="number" step="any">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Servidor *</label>
+                                        <select class="form-control" name="server">
+                                            <option disabled selected>Selecione</option>
+                                            <?= $this->servers->li() ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Expira em</label>
+                                        <input class="form-control" name="expire" type="number" placeholder="Em dias">
+                                        <small class="text-muted"><small>Caso o pacote tenha um prazo, adicione em dias. Logo, será necessário a ação "Expirar"</small></small>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Válido até</label>
+                                        <input class="form-control" name="validate" type="date">
+                                        <small class="text-muted"><small>Se o pacote for temporário, coloque a data final que ele ficara na loja.</small></small>
+                                    </div>
+                                </div>
+                            </div>
+                            <br><br>
+                            <h5>Comandos <button class="float-right btn btn-sm btn-success" id="addCommand">adicionar comando</button></h5>
+                            <hr>
+                            <div id="commands">
+                                <div class="col-md-12">
+                                    <p class="m-0 text-muted" id="noCommands">Não há comandos registrados para este pacote, para fazer isso, clique em "adicionar comando"</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <br>
+                            <button class="btn btn-primary">Adicionar pacote</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <?php else: ?>
+        <div class="col-md-8 mr-auto ml-auto">
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h3>Gerenciador <a href="/admin/loja/pacotes/adicionar" class="btn btn-sm btn-success float-right">Adicionar</a></h3>
+                    <br>
+                    <table class="table table-striped datatable">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Pacote</th>
+                            <th scope="col">Servidor</th>
+                            <th scope="col">Preço</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?= $this->packages->tables() ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    <?php endif ?>
+</div>
+<br>

@@ -1,0 +1,89 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="/admin">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Configurações</li>
+    <li class="breadcrumb-item active">Formas de Pagamento</li>
+</ol>
+<div class="row">
+    <div class="col-12">
+        <h1>Configurações</h1>
+        <p>Formas de Pagamento</p>
+        <hr>
+    </div>
+    <div class="col-md-3">
+        <h5>PagSeguro</h5>
+        <br>
+        <form method="post" class="setGateway">
+            <input type="hidden" name="type" value="pagseguro">
+            <div class="form-group">
+                <label>E-mail:</label>
+                <input class="form-control" name="email" value="<?= $this->settings->printGateway('pagseguro')->email ?>">
+            </div>
+            <div class="form-group">
+                <label>Token:</label>
+                <input class="form-control" name="token" value="<?= $this->settings->printGateway('pagseguro')->token ?>">
+            </div>
+            <button class="btn btn-block btn-primary">ATUALIZAR</button>
+        </form>
+    </div>
+    <div class="col-md-3">
+        <h5>MercadoPago</h5>
+        <br>
+        <form method="post" class="setGateway">
+            <input type="hidden" name="type" value="mercadopago">
+            <div class="form-group">
+                <label>Client ID:</label>
+                <input class="form-control" name="id" value="<?= $this->settings->printGateway('mercadopago')->client_id ?>">
+            </div>
+            <div class="form-group">
+                <label>Client Secret:</label>
+                <input class="form-control" name="secret" value="<?= $this->settings->printGateway('mercadopago')->client_secret ?>">
+            </div>
+            <button class="btn btn-block btn-primary">ATUALIZAR</button>
+        </form>
+    </div>
+    <div class="col-md-3">
+        <h5>PayPal</h5>
+        <br>
+        <form method="post" class="setGateway">
+            <input type="hidden" name="type" value="paypal">
+            <div class="form-group">
+                <label>E-mail da API:</label>
+                <input class="form-control" name="email" value="<?= $this->settings->printGateway('paypal')->email ?>">
+            </div>
+            <div class="form-group">
+                <label>Senha da API:</label>
+                <input class="form-control" name="password" value="<?= $this->settings->printGateway('paypal')->password ?>">
+            </div>
+            <div class="form-group">
+                <label>Assinatura da API:</label>
+                <input class="form-control" name="signature" value="<?= $this->settings->printGateway('paypal')->signature ?>">
+            </div>
+            <button class="btn btn-block btn-primary">ATUALIZAR</button>
+        </form>
+    </div>
+    <div class="col-md-3">
+        <h5>Método de Pagamento</h5>
+        <p class="text-muted">Para ativar/desativar é preciso selecionar/desmarcar as gateways. </p>
+        <br>
+        <div class="gateways">
+            <label>
+                <input type="checkbox" class="habGateway mr-3" id="pagseguro" <?= $this->settings->gatewaysChecked("pagseguro") ?>>
+                <img src="https://i.imgur.com/3dozPs9.png" width="100px">
+            </label>
+        </div>
+        <div class="gateways">
+            <label>
+                <input type="checkbox" class="habGateway mr-3" id="mercadopago" <?= $this->settings->gatewaysChecked("mercadopago") ?>>
+                <img src="https://i.imgur.com/04bzV3e.png" width="100px">
+            </label>
+        </div>
+        <div class="gateways">
+            <label>
+                <input type="checkbox" class="habGateway mr-3" id="paypal" <?= $this->settings->gatewaysChecked("paypal") ?>>
+                <img src="https://i.imgur.com/w1cFbRq.png" width="100px">
+            </label>
+        </div>
+    </div>
+</div>

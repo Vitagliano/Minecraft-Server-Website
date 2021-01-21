@@ -1,0 +1,45 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="/admin">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Loja</li>
+    <li class="breadcrumb-item active">Ativar pacote</li>
+</ol>
+<div class="row">
+    <div class="col-12">
+        <h1>Ativar pacote</h1>
+        <p>Ative pacotes manualmente para usuários</p>
+        <hr>
+    </div>
+    <div class="col-4 mr-auto ml-auto">
+        <div class="card mt-4">
+            <div class="card-body">
+                <h3>Ativador</h3>
+                <br>
+                <form method="post" id="givePackage">
+                    <p class="text-center"><img src="https://minotar.net/helm/MHF_Question/150.png" id="head"></p>
+                    <div class="form-group">
+                        <label for="username"><b>Nome do usuário:</b></label>
+                        <input class="form-control input2head" name="username" id="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="server"><b>Servidor:</b></label>
+                        <select class="form-control serverselect" name="server" id="server">
+                            <option disabled selected>Selecionar</option>
+                            <?= $this->servers->li() ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="package"><b>Pacote:</b></label>
+                        <select class="form-control" name="package" id="package">
+                            <option disabled selected>selecione o servidor</option>
+                        </select>
+                    </div>
+                    <br>
+                    <button class="btn btn-primary btn-block" >ativar pacote</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<br>

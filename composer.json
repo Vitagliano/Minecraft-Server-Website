@@ -1,0 +1,7 @@
+{
+    "require": {
+        "ifsnop/mysqldump-php": "v2.4",
+        "mercadopago/sdk": "v0.5.2",
+        "phpmailer/phpmailer": "~6.0"
+    }
+}

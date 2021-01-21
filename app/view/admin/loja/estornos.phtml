@@ -1,0 +1,56 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="/admin">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Loja</li>
+    <li class="breadcrumb-item active">Estornos</li>
+</ol>
+<div class="row">
+    <div class="col-12">
+        <h1>Estornos</h1>
+        <p>Administre os estornos</p>
+        <hr>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-dark o-hidden h-100">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i class="fa fa-fw fa-dollar"></i>
+                </div>
+                <div class="mr-5 p-3"><h4 class="m-0">R$<?= number_format($this->chargeback->earnsBlocked(), 2, ',', '.'); ?> bloqueados</h4></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-warning o-hidden h-100">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i class="fa fa-fw fa-caret-down"></i>
+                </div>
+                <div class="mr-5 p-3"><h4 class="m-0"><?= $this->chargeback->opens() ?> disputas abertas</h4></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="card mt-4">
+            <div class="card-header">Estornos ativos</div>
+            <div class="card-body">
+                <table class="table table-hover datatable" style="background: rgba(0,0,0,.02);">
+                    <thead>
+                    <tr>
+                        <th scope="col">Código de Transação</th>
+                        <th scope="col">Usuário</th>
+                        <th scope="col">Valor</th>
+                        <th scope="col">Carrinho</th>
+                        <th scope="col">Relatório</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?= $this->chargeback->log() ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<br>

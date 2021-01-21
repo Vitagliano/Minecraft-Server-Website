@@ -1,0 +1,53 @@
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mt-3">
+            <li class="breadcrumb-item"><a href="/" class="text-muted"><i class="ion-home"></i></a></li>
+            <li class="breadcrumb-item active">Perfil</li>
+            <li class="breadcrumb-item active" aria-current="page">Minhas compras</li>
+        </ol>
+    </nav>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card mb-0">
+                <div class="card-body">
+                    <h2 class="text-center m-0"><img src="https://minotar.net/helm/<?= $this->profile->username() ?>/80.png" style="border-radius: 10px"> <?= $this->profile->username() ?></h2>
+                </div>
+            </div>
+            <br>
+            <div class="card bg-dark">
+                <div class="card-body">
+                    <ul class="user-nav">
+                        <li><a href="/perfil"><i class="ion-person mr-2"></i> Resumo</a></li>
+                        <li><a href="/perfil/compras"><i class="ion-ios-cart mr-2"></i> Minhas compras</a></li>
+                        <li class="active"><a href="/perfil/historico"><i class="ion-android-list mr-2"></i> Histórico de pedidos</a></li>
+                        <li><a href="/perfil/suporte"><i class="ion-help-circled mr-2"></i> Suporte</a></li>
+                        <hr>
+                        <li><a href="/perfil/login/logout"><i class="ion-log-out mr-2"></i> Sair</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="content content-white p-5">
+                <h1 class="m-0"><i class="ion-android-list mr-2"></i> Histórico de pedidos</h1>
+                <br>
+                <?php if($this->transactions->hasPendingToUser($this->profile->username())): ?>
+                <div class="alert alert-warning">Existem compras pendentes! <br>Quanto antes pagar, mais rápido receberá. <small>(caso tenha pago, igore esta mensagem e espere a aprovação)</small></div>
+                <?php endif ?>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Nº do pedido</th>
+                        <th scope="col">Compra iniciada em</th>
+                        <th scope="col">Valor</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <?= $this->transactions->showHistoryToUser($this->profile->username()) ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

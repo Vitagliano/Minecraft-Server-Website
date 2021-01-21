@@ -1,0 +1,249 @@
+<?php
+
+    function isLogged()
+    {
+        return (isset($_SESSION['WebUserLogin'])) ? true : (isset($_COOKIE['WebUserLogin'])) ? true : false;
+    }
+?>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Rede Universe - Está procurando um servidor com inovações para jogar? Venha já para o nosso servidor!"/>
+    <link rel="canonical" href="https://www.redeuniverse.net" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="redeuniverse" />
+    <meta property="og:description" content="Rede Universe - Está procurando um servidor com inovações para jogar? Venha já para o nosso servidor!" />
+    <meta property="og:url" content="https://www.redeuniverse.net" />
+    <meta property="og:site_name" content="redeuniverse" />
+    <meta property="og:image" content="app/content/site/assets/images/logo.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:description" content="Rede Universe - Está procurando um servidor com inovações para jogar? Venha já para o nosso servidor!" />
+    <meta name="twitter:title" content="redeuniverse" />
+    <meta name="twitter:site" content="@redeuniverse" />
+
+    <title>Rede Universe</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="<?= APP_ROOT ?>app/content/site/assets/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="<?= APP_ROOT ?>app/content/site/assets/css/normalize/normalize.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/sweetalert2/6.6.0/sweetalert2.min.css" />
+    <link href="<?= APP_ROOT ?>app/content/site/assets/css/core.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="app/content/site/assets/images/logo.png" />
+</head>
+<body>
+<div id="ndzn-mobileNav">
+		<div class="mobileNav-header">
+			<h2>
+				<b>redeuniverse.net</b>
+				<small><i class="btn-playercount">0</i> Jogadores online</small>
+			</h2>
+			<button class="ndzn-js--navClose"><i class="fas fa-times"></i></button>
+		</div>
+		<div class="mobileNav-items">
+			<div class="items-scroll ndzn-js--navItems">
+				
+	<div class="half left">
+		<a href="/" class="item active">Inicio</a>
+		<a href="/equipe" class="item">Equipe</a>
+	</div>
+	<a href="/loja" class="item big">Loja</a>
+	<div class="half right">
+		<a href="/atualizacoes" class="item">Changelog</a>
+		<a href="/punicoes" class="item">Punições</a>
+	</div>
+			
+			</div>
+		</div>
+    </div>
+    
+    <div id="ndzn-header">
+		<div class="header-nav">
+			<div class="container p-header-inner">
+				<button class="header-nav-mobile-btn ndzn-js--navOpen">
+                    <i class="fas fa-bars"></i>
+					<b class="ndzn-js--currentNavItem">Inicio</b>
+				</button>
+				<div class="header-nav-social">
+					<a href="" target="_blank" class="glossy">
+                        <i class="fab fa-twitter"></i>
+					</a>
+					<a href="https://discord.gg/bPSKVp2" target="_blank" class="glossy discord">
+                        <i class="fab fa-discord"></i>
+					</a>
+				</div>
+				<div class="ndzn-component-visitortabs p-navgroup p-account p-navgroup--guest">
+            <a href="/loja/carrinho" class="guest-link p-navgroup-link p-navgroup-link--textual p-navgroup-link--logIn" rel="nofollow" data-xf-click="overlay">
+				<span class="p-navgroup-linkText">Carrinho</span>
+            </a>
+            <?php if(!isLogged()): ?>
+			<a href="/perfil/login" class="guest-link p-navgroup-link p-navgroup-link--textual p-navgroup-link--logIn" rel="nofollow" data-xf-click="overlay">
+				<span class="p-navgroup-linkText">Log in</span>
+            </a>
+            <?php else: ?>
+			<a href="/perfil" class="guest-link p-navgroup-link p-navgroup-link--textual p-navgroup-link--logIn" rel="nofollow" data-xf-click="overlay">
+				<span class="p-navgroup-linkText">Minha conta</span>
+            </a>
+            <?php endif ?>
+			
+		
+</div>
+			</div>
+			<div class="header-nav-items ndzn-js--navItems">
+				
+	<div class="half left">
+		<a href="/" class="item active">Inicio</a>
+		<a href="/equipe" class="item">Equipe</a>
+	</div>
+	<a href="/loja" class="item big">Loja</a>
+	<div class="half right">
+		<a href="/atualizacoes" class="item">Changelog</a>
+		<a href="/punicoes" class="item">Punições</a>
+	</div>
+
+			</div>
+		</div>
+		<a href="/" class="header-logo"></a>
+		<div class="header-bottom">
+			<div class="box box--ip btn-copyip" onclick="">
+				<div class="box-text">
+					<span class="small">
+						<b class="btn-playercount">0</b> players online
+					</span>
+					<span class="big">
+						redeuniverse.net
+					</span>
+				</div>
+				<div class="box-icon">
+                <i class="fas fa-clipboard"></i>
+				</div>
+			</div>
+			<div class="box box--logoSpacer"></div>
+			<div class="box box--discord" onclick="window.open('https://discord.gg/EKmMgRm', '_blank')">
+				<div class="box-icon">
+                    <i class="fab fa-discord"></i>
+				</div>
+				<div class="box-text">
+					<span class="small">Entre em nosso</span>
+					<span class="big">DISCORD</span>
+				</div>
+			</div>
+		</div>
+    </div>
+    
+
+
+
+
+<?= $this->render(); ?>
+
+
+
+<footer>
+    <div class="top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="footer-nav">
+                        <ul>
+                            <a class="nav-link" href="/">
+                                <li class="nav-item">
+                                Início
+                                </li>
+                            </a>
+                            <a class="nav-link" href="/loja">
+                                <li class="nav-item">
+                                Loja
+                                </li>
+                            </a>
+                            <a class="nav-link" href="/equipe">
+                                <li class="nav-item">
+                                Equipe
+                                </li>
+                            </a>
+                            </a>
+                            <a class="nav-link" href="/atualizacoes">
+                                <li class="nav-item">
+                                Changelog
+                                </li>
+                            </a>
+                            <a class="nav-link" href="/punições">
+                                <li class="nav-item">
+                                Punições
+                                </li>
+                            </a>
+                        </ul>
+                        
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                <div class="footer-social">
+                    <a href="http://www.facebook.com/gabrielrvita" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="http://www.twitter.com/gbrlrusso" target="_blank">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="/app/content/site/assets/images/logo.png" alt="">
+                    Copyright © <b>Rede Universe</b>. Todos direitos reservados.
+                </div>
+                <div class="col-md-6 metodos">
+                    <img src="/app/content/site/assets/images/methods.svg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</footer>
+<script src="<?= APP_ROOT ?>app/content/site/assets/js/jquery/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/sweetalert2/6.6.0/sweetalert2.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+<script>
+
+$(document).on('click', '.ndzn-js--navOpen', function(e){
+	e.preventDefault();
+	$('body').addClass('ndzn-navOpen');
+});
+$(document).on('click', '.ndzn-js--navClose', function(e){
+	e.preventDefault();
+	$('body').removeClass('ndzn-navOpen');
+});
+
+
+new ClipboardJS('.btn-copyip', {
+	text: () => ip
+}).on('success', e => {
+	swal(
+		'IP Copiado',
+		'Esperamos por você ❤',
+		'success'
+	)
+});
+
+
+let ip = 'redeuniverse.net';
+$.get('https://mcapi.us/server/status?ip=' + ip, function(res){
+	if (res.status !== 'success') return null;
+	$('.btn-playercount').html(res.players.now);
+});
+</script>
+
+<script src="<?= APP_ROOT ?>app/content/site/assets/js/popper/umd/popper.min.js"></script>
+<script src="<?= APP_ROOT ?>app/content/site/assets/js/bootstrap/bootstrap.min.js"></script>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<script src="<?= APP_ROOT ?>app/content/site/assets/js/init.js"></script>
+</body>
+</html>

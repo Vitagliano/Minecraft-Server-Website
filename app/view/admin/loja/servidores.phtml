@@ -1,0 +1,66 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="/admin">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Loja</li>
+    <li class="breadcrumb-item active">Servidores</li>
+</ol>
+<div class="row">
+    <div class="col-12">
+        <h1>Servidores</h1>
+        <p>Adicione novos servidores</p>
+        <hr>
+    </div>
+    <?php if($this->getParams(0) == 'adicionar'): ?>
+        <div class="col-md-6 ml-auto mr-auto">
+            <div class="card mt-4">
+                <div class="card-header">Novo servidor</div>
+                <div class="card-body">
+                    <div class="alert alert-danger hide"></div>
+                    <div class="alert alert-success hide"></div>
+                    <form method="post" class="row" id="addServer">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Nome *</label>
+                                <input class="form-control" name="name" autocomplete="false">
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="show" checked>
+                                <label class="form-check-label">
+                                    Mostrar na loja
+                                </label>
+                                <br>
+                                <small class="text-muted">Caso desmarque a opção, o servidor não irá aparecer na loja, porém poderá ser usado para fins de configuração <br>Exemplo: Lobby 1</small>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <br>
+                            <button class="btn btn-primary">Adicionar servidor</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <?php else: ?>
+        <div class="col-md-8 mr-auto ml-auto">
+            <div class="card mt-4">
+                <div class="card-body">
+                    <table class="table table-striped datatable">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Mostrar na loja</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <?= $this->servers->show() ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    <?php endif ?>
+</div>
+<br>

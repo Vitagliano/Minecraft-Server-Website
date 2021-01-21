@@ -1,0 +1,122 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="/admin">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Configurações</li>
+    <li class="breadcrumb-item active">Adicionar usuários</li>
+</ol>
+<div class="row">
+    <div class="col-12">
+        <h1>Configurações</h1>
+        <p>Adicionar usuários</p>
+    </div>
+    <div class="col-md-12">
+        <form method="post" id="addUser">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="alert alert-danger" style="display: none;"></div>
+                    <div class="alert alert-success" style="display: none;"></div>
+                    <input name="<?= $this->tokenID ?>" value="<?= $this->tokenVALUE ?>" type="hidden">
+                    <div class="form-group">
+                        <label>Usuário</label>
+                        <input class="form-control" name="<?= $this->inputs['username']; ?>">
+                    </div>
+                    <div class="form-group">
+                        <label>Senha</label>
+                        <input class="form-control" name="<?= $this->inputs['password']; ?>" id="addUserPassword">
+                    </div>
+                    <button class="btn btn-primary"><i class="fa fa-user-plus"></i> Salvar usuário</button>
+                    <button class="btn btn-success float-right" type="button" onclick="randomPassword(this)"><i class="fa fa-key"></i> Gerar senha</button>
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p><b>Minha loja</b></p>
+                            <label><input type="checkbox" name="permissions[]" value="store.*"> Todos privilégios</label> <br>
+                            <label><input type="checkbox" name="permissions[]" value="store.pacotes"> Pacotes</label> <br>
+                            <label><input type="checkbox" name="permissions[]" value="store.servidores"> Servidores</label> <br>
+                            <label><input type="checkbox" name="permissions[]" value="store.descontos"> Descontos</label> <br>
+                            <label><input type="checkbox" name="permissions[]" value="store.estornos"> Estornos</label> <br>
+                            <label><input type="checkbox" name="permissions[]" value="store.fraude"> Anti-fraude</label> <br>
+                            <label><input type="checkbox" name="permissions[]" value="store.capital"> Capital de Giro</label> <br>
+                            <label><input type="checkbox" name="permissions[]" value="store.ativar"> Ativar produto</label> <br>
+                            <label><input type="checkbox" name="permissions[]" value="store.bloquear"> Bloquear conta</label> <br>
+                            <label><input type="checkbox" name="permissions[]" value="store.transacoes"> Transações</label>
+                        </div>
+                        <div class="col-md-3">
+                            <p><b>Site</b></p>
+                            <label><input type="checkbox" name="permissions[]" value="site.*"> Todos privilégios</label> <br>
+                            <label><input type="checkbox" name="permissions[]" value="site.postagens"> Postagens</label> <br>
+                            <label><input type="checkbox" name="permissions[]" value="site.equipe"> Equipe</label> <br>
+                            <label><input type="checkbox" name="permissions[]" value="site.changelog"> Changelog</label> <br>
+                            <label><input type="checkbox" name="permissions[]" value="site.emails"> E-mails</label> <br>
+                            <label><input type="checkbox" name="permissions[]" value="site.termos"> Termos de uso</label> <br>
+                            <label><input type="checkbox" name="permissions[]" value="site.manutencao"> Manutenção</label>
+                        </div>
+                        <div class="col-md-3">
+                            <p><b>Suporte</b></p>
+                            <label><input type="checkbox" name="permissions[]" value="support.*"> Todos privilégios</label> <br>
+                            <label><input type="checkbox" name="permissions[]" value="support.abertos"> Abertos</label> <br>
+                            <label><input type="checkbox" name="permissions[]" value="support.logs"> Logs</label> <br>
+                            <label><input type="checkbox" name="permissions[]" value="support.mensagens"> Mensagens prontas</label>
+                        </div>
+                        <div class="col-md-3">
+                            <p><b>Configurações</b></p>
+                            <label><input type="checkbox" name="permissions[]" value="settings.*"> Todos privilégios</label> <br>
+                            <label><input type="checkbox" name="permissions[]" value="settings.gateways"> Formas de pagamento</label> <br>
+                            <label><input type="checkbox" name="permissions[]" value="settings.database"> Banco de dados</label> <br>
+                            <label><input type="checkbox" name="permissions[]" value="settings.backup"> Backup</label> <br>
+                            <label><input type="checkbox" name="permissions[]" value="settings.usuarios"> Adicionar usuários</label> <br>
+                            <br>
+                            <p><b>Dashboard</b></p>
+                            <label><input type="checkbox" name="permissions[]" value="dashboard.*"> Mostrar dashboard</label> <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-6">
+        <div class="card mt-5 mb-5">
+            <div class="card-header">
+                <i class="fa fa-list"></i> Log de atividades
+            </div>
+            <div class="card-body">
+                <table class="table table-striped table-bordered datatable" style="width:100%">
+                    <thead>
+                    <tr>
+                        <th>Ordenação</th>
+                        <th>Usuário</th>
+                        <th>Data e hora</th>
+                        <th>IP</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <?= $this->accounts->logs() ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card mt-5 mb-5">
+            <div class="card-header">
+                <i class="fa fa-users"></i> Usuários registrados
+            </div>
+            <div class="card-body">
+                <table class="table table-striped table-bordered datatable" style="width:100%">
+                    <thead>
+                    <tr>
+                        <th>Usuário</th>
+                        <th>Último login</th>
+                        <th>Deletar</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <?= $this->accounts->users() ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

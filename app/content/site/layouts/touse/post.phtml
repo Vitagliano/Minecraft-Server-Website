@@ -1,0 +1,52 @@
+<div class="feed">
+    <div class="announcement-header">
+
+
+    <span class="avatar avatar--s announcement-avatar">
+			<img draggable="false" src="https://minotar.net/helm/{author}/76.png" srcset="https://minotar.net/helm/{author}/76.png 2x" alt="{author}" class="avatar-u2-s"> 
+    </span>
+
+					
+
+					<div class="announcement-header-details">
+
+						<a class="announcement-title" onclick="goTo('/home/postagem/{id}')">{title}</a>
+
+						<ul class="announcement-meta listInline listInline--bullet">
+
+							<li>
+								<i class="fa fa-user" aria-hidden="true" title="Postado por"></i>
+								<span>Postado por</span>
+
+								<b>{author}</b>
+							</li>
+
+							<li>
+								<i class="fas fa-clock" aria-hidden="true" title="Postado em"></i>
+								<span>em</span>
+
+								<b>{date}</b> <span>às</span> <b>{hour}</b>
+							</li>
+
+
+						</ul>
+
+					</div>
+
+
+                </div>
+     {image}
+    <div class="body">
+		{body}
+		
+	</div>
+	<div class="sectionFooter">
+            <div class="sectionFooterFade">
+            <div class="continue">
+                <a class="btn btn-primary" onclick="goTo('/home/postagem/{id}')">
+				<i class="fas fa-book"></i> Leia mais
+                </a>
+            </div>
+            </div>
+        </div>
+</div>

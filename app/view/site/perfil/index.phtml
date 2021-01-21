@@ -1,0 +1,31 @@
+<div class="container">
+    <div id="content">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card mb-0">
+                    <div class="card-body">
+                        <h3 class="text-center m-0"><img src="https://minotar.net/helm/<?= $this->profile->username() ?>/80.png" style="border-radius: 4px; margin-bottom: 10px;"> <?= $this->profile->username() ?></h3>
+                    </div>
+                </div>
+                <br>
+                <div class="card">
+                    <div class="card-body">
+                        <ul class="user-nav">
+                            <li class="active"><a href="/perfil"><i class="fas fa-user"></i> Resumo</a></li>
+                            <li><a href="/perfil/compras"><i class="fas fa-shopping-cart"></i> Minhas compras</a></li>
+                            <li><a href="/perfil/suporte"><i class="fas fa-headset"></i> Suporte</a></li>
+                            <li><a href="/perfil/login/logout"><i class="fas fa-sign-out-alt"></i> Sair</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="card p-5">
+                    <h1 class="m-0"><i class="fas fa-user"></i> Resumo</h1>
+                    <h5 class="text-muted" style="margin-top: 15px;">Este é o seu painel, aqui você pode visualizar todas as compras efetuadas (sejam elas aprovadas, pendentes ou recusadas).</h5>
+                    <h5 class="text-muted" style="margin-top: 15px;">Tem alguma dúvida? Entre em contato conosco pelo e-mail: suporte@redeuniverse.net ou criando um ticket no <a href="/perfil/suporte">suporte</a>.</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

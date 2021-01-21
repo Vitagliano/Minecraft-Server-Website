@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Painel de Controle</title>
+    <link href="<?= APP_ROOT ?>/app/content/admin/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?= APP_ROOT ?>/app/content/admin/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="<?= APP_ROOT ?>/app/content/admin/assets/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="<?= APP_ROOT ?>/app/content/admin/assets/css/sb-admin.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+    <link href="<?= APP_ROOT ?>/app/content/admin/assets/css/core.css" rel="stylesheet">
+    <script>window.scripts = [];</script>
+</head>
+
+<body class="sticky-footer bg-dark" id="page-top">
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="mainNav">
+    <a class="navbar-brand" href="/admin">Painel de <b>Controle</b></a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+                <a class="nav-link" href="/admin">
+                   <i class="fas fa-columns"></i>
+                    <span class="nav-link-text">Dashboard</span>
+                </a>
+            </li>
+            <?php if($this->permissions->node('store')): ?>
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Minha loja">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#menu-li-1" data-parent="#exampleAccordion">
+                    <i class="fa fa-fw fa-shopping-basket"></i>
+                    <span class="nav-link-text">Minha loja</span>
+                </a>
+                <ul class="sidenav-second-level collapse" id="menu-li-1">
+                    <?php if($this->permissions->parent('store', 'pacotes')): ?>
+                    <li>
+                        <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#menu-li-pacotes">
+                            <i class="fa fa-cube"></i> Pacotes
+                        </a>
+                        <ul class="sidenav-third-level collapse" id="menu-li-pacotes">
+                            <li>
+                                <a href="/admin/loja/pacotes/adicionar">Adicionar</a>
+                            </li>
+                            <li>
+                                <a href="/admin/loja/pacotes/gerenciar">Gerenciar</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <?php endif ?>
+                    <?php if($this->permissions->parent('store', 'servidores')): ?>
+                    <li>
+                        <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#menu-li-servidores"><i class="fa fa-database"></i> Servidores</a>
+                        <ul class="sidenav-third-level collapse" id="menu-li-servidores">
+                            <li>
+                                <a href="/admin/loja/servidores/adicionar">Adicionar</a>
+                            </li>
+                            <li>
+                                <a href="/admin/loja/servidores/gerenciar">Gerenciar</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <?php endif ?>
+                    <?php if($this->permissions->parent('store', 'descontos')): ?>
+                    <li>
+                        <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#menu-li-descontos"><i class="fa fa-asterisk"></i> Descontos</a>
+                        <ul class="sidenav-third-level collapse" id="menu-li-descontos">
+                            <li>
+                                <a href="/admin/loja/descontos/adicionar">Adicionar</a>
+                            </li>
+                            <li>
+                                <a href="/admin/loja/descontos/gerenciar">Gerenciar</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <?php endif ?>
+                    <?php if($this->permissions->parent('store', 'estorno')): ?>
+                    <li>
+                        <a href="/admin/loja/estornos"><i class="fa fa-angle-double-left"></i> Estornos</a>
+                    </li>
+                    <?php endif ?>
+                    <?php if($this->permissions->parent('store', 'fraude')): ?>
+                    <li>
+                        <a href="/admin/loja/fraude"><i class="fa fa-shield"></i> Anti-Fraude</a>
+                    </li>
+                    <?php endif ?>
+                    <?php if($this->permissions->parent('store', 'capital')): ?>
+                    <li>
+                        <a href="/admin/loja/capital"><i class="fa fa-anchor"></i> Capital de Giro</a>
+                    </li>
+                    <?php endif ?>
+                    <?php if($this->permissions->parent('store', 'ativar')): ?>
+                    <li>
+                        <a href="/admin/loja/ativar"><i class="fa fa-share-square"></i> Ativar produto</a>
+                    </li>
+                    <?php endif ?>
+                    <?php if($this->permissions->parent('store', 'bloquear')): ?>
+                    <li>
+                        <a href="/admin/loja/bloquear"><i class="fa fa-user-times"></i> Bloquear conta</a>
+                    </li>
+                    <?php endif ?>
+                    <?php if($this->permissions->parent('store', 'transacoes')): ?>
+                    <li>
+                        <a href="/admin/loja/transacoes"><i class="fa fa-retweet"></i> Transações</a>
+                    </li>
+                    <?php endif ?>
+                </ul>
+            </li>
+            <?php endif ?>
+            <?php if($this->permissions->node('support')): ?>
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Suporte">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#menu-li-5" data-parent="#exampleAccordion">
+                    <i class="fa fa-fw fa-life-ring"></i>
+                    <span class="nav-link-text">Suporte</span>
+                </a>
+                <ul class="sidenav-second-level collapse" id="menu-li-5">
+                    <?php if($this->permissions->parent('support', 'abertos')): ?>
+                    <li>
+                        <a href="/admin/suporte"><i class="fa fa-envelope"></i> Abertos</a>
+                    </li>
+                    <?php endif ?>
+                    <?php if($this->permissions->parent('support', 'logs')): ?>
+                    <li>
+                        <a href="/admin/suporte/logs"><i class="fa fa-envelope-open"></i> Log de tickets</a>
+                    </li>
+                    <?php endif ?>
+                    <?php if($this->permissions->parent('support', 'mensagens')): ?>
+                    <li>
+                        <a href="/admin/suporte/mensagens"><i class="fa fa-reply-all"></i> Mensagens prontas</a>
+                    </li>
+                    <?php endif ?>
+                </ul>
+            </li>
+            <?php endif ?>
+            <?php if($this->permissions->node('site')): ?>
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Site">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#menu-li-3" data-parent="#exampleAccordion">
+                    <i class="fa fa-fw fa-sitemap"></i>
+                    <span class="nav-link-text">Site</span>
+                </a>
+                <ul class="sidenav-second-level collapse" id="menu-li-3">
+                    <?php if($this->permissions->parent('site', 'postagens')): ?>
+                    <li>
+                        <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#menu-li-postagens">
+                            <i class="fa fa-clipboard"></i> Postagens
+                        </a>
+                        <ul class="sidenav-third-level collapse" id="menu-li-postagens">
+                            <li>
+                                <a href="/admin/site/postagens/adicionar">Adicionar</a>
+                            </li>
+                            <li>
+                                <a href="/admin/site/postagens/gerenciar">Gerenciar</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <?php endif ?>
+                    <?php if($this->permissions->parent('site', 'equipe')): ?>
+                    <li>
+                        <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#menu-li-equipe">
+                            <i class="fas fa-user"></i> Equipe
+                        </a>
+                        <ul class="sidenav-third-level collapse" id="menu-li-equipe">
+                            <li>
+                                <a href="/admin/site/equipe/adicionar">Adicionar</a>
+                            </li>
+                            <li>
+                                <a href="/admin/site/equipe/gerenciar">Gerenciar</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <?php endif ?>
+                    <?php if($this->permissions->parent('site', 'atualizacoes')): ?>
+                    <li>
+                        <a href="/admin/site/atualizacoes"><i class="fa fa-calendar"></i> Atualizações</a>
+                    </li>
+                    <?php endif ?>
+                    <?php if($this->permissions->parent('site', 'emails')): ?>
+                    <li>
+                        <a href="/admin/site/emails"><i class="fa fa-envelope"></i> E-mails</a>
+                    </li>
+                    <?php endif ?>
+                    <?php if($this->permissions->parent('site', 'termos')): ?>
+                    <li>
+                        <a href="/admin/site/termos"><i class="fa fa-paperclip"></i> Termos de Uso</a>
+                    </li>
+                    <?php endif ?>
+                    <?php if($this->permissions->parent('site', 'manutencao')): ?>
+                    <li>
+                        <a href="/admin/site/manutencao"><i class="fa fa-terminal"></i> Manutenção</a>
+                    </li>
+                    <?php endif ?>
+                </ul>
+            </li>
+            <?php endif ?>
+            <?php if($this->permissions->node('settings')): ?>
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Configurações">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#menu-li-2" data-parent="#exampleAccordion">
+                    <i class="fa fa-fw fa-cog"></i>
+                    <span class="nav-link-text">Configurações</span>
+                </a>
+                <ul class="sidenav-second-level collapse" id="menu-li-2">
+                    <?php if($this->permissions->parent('settings', 'gateways')): ?>
+                    <li>
+                        <a href="/admin/configuracoes/gateways"><i class="fa fa-credit-card"></i> Formas de pagamento</a>
+                    </li>
+                    <?php endif ?>
+                    <?php if($this->permissions->parent('settings', 'database')): ?>
+                    <li>
+                        <a href="/admin/configuracoes/databases"><i class="fa fa-database"></i> Banco de Dados</a>
+                    </li>
+                    <?php endif ?>
+                    <?php if($this->permissions->parent('settings', 'backup')): ?>
+                    <li>
+                        <a href="/admin/configuracoes/backup"><i class="fa fa-archive"></i> Backup</a>
+                    </li>
+                    <?php endif ?>
+                    <?php if($this->permissions->parent('settings', 'usuarios')): ?>
+                    <li>
+                        <a href="/admin/configuracoes/usuarios"><i class="fa fa-user-plus"></i> Adicionar usuário</a>
+                    </li>
+                    <?php endif ?>
+                </ul>
+            </li>
+            <?php endif ?>
+        </ul>
+        <ul class="navbar-nav sidenav-toggler">
+            <li class="nav-item">
+                <a class="nav-link text-center" id="sidenavToggler">
+                    <i class="fa fa-fw fa-angle-left"></i>
+                </a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="navbar-text mr-2 ml-2">
+                Sessão iniciada para "<?= \app\lib\RemoteAddress::get() ?>"
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+                    <i class="fa fa-fw fa-sign-out"></i>Sair
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="content-wrapper">
+    <div class="container-fluid">
+
+        <?= $this->render(); ?>
+
+    </div>
+    <footer class="sticky-footer">
+        <div class="container">
+            <div class="text-center">
+                
+            </div>
+        </div>
+    </footer>
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fa fa-angle-up"></i>
+    </a>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tem certeza?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Após confirmar a saída, você será redirecionado a página de login e perderá acesso ao painel.
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-primary" href="/admin/home/login/logout">Confirmar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="<?= APP_ROOT ?>/app/content/admin/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="<?= APP_ROOT ?>/app/content/admin/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= APP_ROOT ?>/app/content/admin/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="<?= APP_ROOT ?>/app/content/admin/assets/vendor/chart.js/Chart.min.js"></script>
+    <script src="<?= APP_ROOT ?>/app/content/admin/assets/vendor/datatables/jquery.dataTables.js"></script>
+    <script src="<?= APP_ROOT ?>/app/content/admin/assets/vendor/datatables/dataTables.bootstrap4.js"></script>
+    <script src="<?= APP_ROOT ?>/app/content/admin/assets/js/sb-admin.js"></script>
+    <script src="<?= APP_ROOT ?>/app/content/admin/assets/js/sb-admin-datatables.js"></script>
+    <script src="<?= APP_ROOT ?>/app/content/admin/assets/js/sb-admin-charts.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
+    <script src="<?= APP_ROOT ?>/app/content/admin/assets/javascript/functions.js"></script>
+    <script>
+        $(function() {
+
+            if(scripts instanceof Array) {
+
+                $.each(scripts, function (index, fn) {
+
+                    if(typeof fn === 'function') fn();
+
+                });
+
+            }
+
+        });
+    </script>
+</div>
+</body>
+
+</html>

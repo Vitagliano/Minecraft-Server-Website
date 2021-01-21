@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Relatório</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <style type="text/css">
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        h1 {
+            font-size: 2.2em;
+            margin: 0;
+            text-align: left;
+        }
+        h2 {
+            font-size: 1.2em;
+            color: #616161;
+            margin: 0;
+            text-align: left;
+        }
+        h5 {
+            position: absolute;
+            top: 0;
+            left: 20px;
+            font-size: 18px;
+            text-align: left;
+        }
+        h6 {
+            font-size: 18px;
+        }
+        .table {
+            width: 100%;
+        }
+        .table th {
+            border: none;
+            padding: 0;
+        }
+        .table td {
+            padding: 10px;
+            background: rgba(0,0,0,0.05);
+        }
+        #rows {
+            width: 100%;
+        }
+        #rows th {
+            position: relative;
+            border: solid 1px #eeeeee;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+            padding: 15px;
+        }
+        #rows p {
+            text-align: left;
+            font-size: 10px;
+        }
+        .table-packages thead th {
+            width: 100%;
+            border: solid 1px #eee;
+            padding: 10px 30px;
+        }
+        .table-packages thead tr td {
+            background: #eee;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <br>
+    <table id="rows">
+        <tr>
+            <th scope="col">
+                <h1>Relatório da transação</h1>
+                <h2>%code</h2>
+            </th>
+            <th scope="col">
+                <p><b>Referencia:</b> <small>%reference</small></p>
+                <p><b>Data da compra:</b> <small>%date</small></p>
+            </th>
+        </tr>
+    </table>
+    <table id="rows">
+        <tr>
+            <th scope="col" style="position: relative">
+                <h5><b>Notificações recebidas pelo servidor</b></h5>
+                <br><br><br>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Código</th>
+                        <th scope="col">Data e hora</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    %table
+                    </tbody>
+                </table>
+            </th>
+            <th scope="col">
+                <h5><b>Detalhes</b></h5>
+                <br><br><br>
+                <p><b>Comprador:</b> %name</p>
+                <p><b>E-mail:</b> <small>%email</small></p>
+                <p><b>Valor à pagar:</b> R$%gross</p>
+                <p><b>Valor à receber:</b> R$%net</p>
+                <p><b>Taxa:</b> R$%fee</p>
+                <p><b>Método de pagamento</b> <small>%method</small></p>
+            </th>
+        </tr>
+    </table>
+    <table id="rows">
+        <tr>
+            <th scope="col" style="position: relative">
+                <h5><b>Pacotes do carrinho</b></h5>
+                <br><br><br>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Produto</th>
+                        <th scope="col">Servidor</th>
+                        <th scope="col">Quantidade</th>
+                        <th scope="col">Valor</th>
+                        <th scope="col">Subtotal</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    %products
+                    </tbody>
+                </table>
+            </th>
+        </tr>
+    </table>
+    <br><br>
+    <div style="position: absolute; width: 100%; bottom: 10px; left: 50%; transform: translateX(-50%);  text-align: center; ">Relatório gerado em %now</div>
+</body>
+</html>

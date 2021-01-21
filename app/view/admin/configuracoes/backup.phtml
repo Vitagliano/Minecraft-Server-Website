@@ -1,0 +1,43 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="/admin">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Configurações</li>
+    <li class="breadcrumb-item active">Backup</li>
+</ol>
+<div class="row">
+    <div class="col-12">
+        <h1>Backup</h1>
+        <p>Backups do banco de dados do site.</p>
+        <hr>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">Backup manual</div>
+            <div class="card-body">
+                <p class="text-muted">Os backups automáticos são feitos todos os dias as 2:00AM</p>
+                <button class="btn btn-primary btn-block backup-save">fazer novo backup</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">Arquivos de backup</div>
+            <div class="card-body">
+                <table class="table table-striped table-bordered datatable" style="width:100%">
+                    <thead>
+                    <tr>
+                        <th>Ordenação</th>
+                        <th>Feito em</th>
+                        <th>Baixados</th>
+                        <th>Baixar</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?= $this->backup->logs() ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

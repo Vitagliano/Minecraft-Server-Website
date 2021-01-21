@@ -1,0 +1,33 @@
+<section class="container">
+    <div id="content">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <h5>Selecione:</h5>
+                        <ul class="nav-servers">
+                            <?= $this->servers->li() ?>
+                        </ul>
+                    </div>
+                </div>
+                <?= $this->packages->getMostUsername() ?>
+            </div>
+            <div class="col-md-9">
+                <?php if(!isset($_GET['s'])): ?>
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="m-0">Bem vindo a nossa loja!</h1>
+                        <br>
+                        <p class="text-muted text-justify m-0">
+                        <p>Você está na loja oficial de produtos da Rede Universe, aqui você encontra VIPs e Cash, que ajudam em sua jornada dentro do nosso servidor.</p>
+                        
+                        <p class="small">Todas as suas informações inseridas em nosso site são criptografadas e protegidas, ou seja, permanecem particulares.
+                        Caso aconteça algum problema em sua compra não hesite em entrar em contato conosco.<br> Você poderá abrir um ticket em nosso site ou enviar um e-mail para suporte@redeuniverse.net</p>
+                        </p>
+                    </div>
+                </div>
+                <?php else: echo "<div class='row'>"; echo $this->packages->category(strip_tags($_GET['s'])); echo '</div>';  endif ?>
+            </div>
+        </div>
+    </div>
+</section>

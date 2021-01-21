@@ -1,0 +1,87 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="/admin">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Loja</li>
+    <li class="breadcrumb-item active">Descontos</li>
+</ol>
+<div class="row">
+    <div class="col-12">
+        <h1>Descontos</h1>
+        <p>Adicione novos descontos</p>
+        <hr>
+    </div>
+    <?php if($this->getParams(0) == 'adicionar'): ?>
+        <div class="col-md-8 ml-auto mr-auto">
+            <div class="card mt-4">
+                <div class="card-header">Novo desconto</div>
+                <div class="card-body">
+                    <form method="post" id="addDiscount">
+                        <div class="row">
+                            <div class="form-group col-md-7">
+                                <label for="type">Tipo:</label>
+                                <select class="form-control" id="type" name="type">
+                                    <option disabled selected>Selecione</option>
+                                    <option value="1">Cupom</option>
+                                    <option value="2">Liquidação</option>
+                                    <option value="3">Global</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="cupom">Cupom:</label>
+                                <input class="form-control" id="cupom" name="cupom" disabled>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="server">Servidor:</label>
+                                <select class="form-control" id="server" name="server" disabled>
+                                    <option disabled selected>Selecione</option>
+                                    <option value="0">Todos</option>
+                                    <?= $this->servers->li(); ?>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="percent">Desconto:</label>
+                                <input class="form-control" id="percent" name="percent" type="number" disabled>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="expire">Expira em:</label>
+                                <input class="form-control" id="expire" name="expire" type="date" disabled>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="use">Duração:</label>
+                                <input class="form-control" id="use" name="use" type="number" placeholder="vezes utilizável" disabled>
+                            </div>
+                        </div>
+                        <hr>
+                        <button class="btn btn-primary">adicionar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <?php else: ?>
+        <div class="col-md-8 ml-auto mr-auto">
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h3>Gerenciador</h3>
+                    <br>
+                    <table class="table table-hover datatable" style="background: rgba(0,0,0,.02);">
+                        <thead>
+                        <tr>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Cupom</th>
+                            <th scope="col">Desconto</th>
+                            <th scope="col">Expira em</th>
+                            <th scope="col">Usos</th>
+                            <th scope="col"><center>Ações</center></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?= $this->discounts->table() ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    <?php endif ?>
+</div>
+<br>
